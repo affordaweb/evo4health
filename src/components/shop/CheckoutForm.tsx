@@ -1,12 +1,18 @@
 'use client'
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
-import { loadStripe } from '@stripe/stripe-js'
-import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
-import { useCart } from '@/contexts/CartContext'
-import { formatPrice } from '@/lib/utils'
-import Input from '@/components/ui/Input'
-import type { ShippingAddress } from '@/lib/types'
+import Link from 'next/link'
+import { Clock } from 'lucide-react'
+
+export default function CheckoutForm() {
+  return (
+    <div className="text-center py-12">
+      <Clock className="h-12 w-12 text-primary-700 mx-auto mb-4" />
+      <h3 className="font-heading text-xl font-bold text-slate-900 mb-2">Online Orders Coming Soon</h3>
+      <p className="text-slate-500 mb-6">Please contact us to place an order.</p>
+      <Link href="/contact" className="btn-primary">Contact Us</Link>
+    </div>
+  )
+}
+
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ?? '')
 
