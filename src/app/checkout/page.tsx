@@ -8,7 +8,7 @@ import CheckoutForm from '@/components/shop/CheckoutForm'
 import { formatPrice } from '@/lib/utils'
 
 export default function CheckoutPage() {
-  const { items, total, count } = useCart()
+  const { items, totalPrice, totalItems } = useCart()
   const router = useRouter()
   const [mounted, setMounted] = useState(false)
 
@@ -16,7 +16,7 @@ export default function CheckoutPage() {
 
   if (!mounted) return null
 
-  if (count === 0) {
+  if (totalItems === 0) {
     return (
       <div className="pt-20 min-h-screen flex items-center justify-center bg-[#f8fafc]">
         <div className="text-center">
@@ -28,8 +28,8 @@ export default function CheckoutPage() {
     )
   }
 
-  const shipping = total >= 75 ? 0 : 9.99
-  const orderTotal = total + shipping
+  const shipping = totalPrice >= 75 ? 0 : 9.99
+  const orderTotal = totalPrice + shipping
 
   return (
     <div className="pt-20 min-h-screen bg-[#f8fafc]">
@@ -41,15 +41,15 @@ export default function CheckoutPage() {
             <h2 className="font-heading text-xl font-bold text-slate-900 mb-6">Order Summary</h2>
             <div className="space-y-4 mb-6">
               {items.map(item => (
-                <div key={item.id} className="flex justify-between text-sm">
-                  <span className="text-slate-600">{item.name} × {item.quantity}</span>
-                  <span className="font-medium text-slate-900">{formatPrice(item.price * item.quantity)}</span>
+                <div key={item.product.id} className="flex justify-between text-sm">
+                  <span className="text-slate-600">{item.product.name} × {item.quantity}</span>
+                  <span className="font-medium text-slate-900">{formatPrice(item.product.price * item.quantity)}</span>
                 </div>
               ))}
             </div>
             <div className="border-t pt-4 space-y-2">
               <div className="flex justify-between text-slate-600 text-sm">
-                <span>Subtotal</span><span>{formatPrice(total)}</span>
+                <span>Subtotal</span><span>{formatPrice(totalPrice)}</span>
               </div>
               <div className="flex justify-between text-slate-600 text-sm">
                 <span>Shipping</span>
