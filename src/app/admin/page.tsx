@@ -1,11 +1,11 @@
 import { redirect } from 'next/navigation'
-import { createServerClient } from '@/lib/supabase/server'
+import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
 import { Package, ShoppingCart, DollarSign, Users, ArrowRight } from 'lucide-react'
 import { formatPrice, formatDate } from '@/lib/utils'
 
 export default async function AdminPage() {
-  const supabase = createServerClient()
+  const supabase = createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect('/login')
   const { data: profile } = await supabase.from('profiles').select('role').eq('id', user.id).single()

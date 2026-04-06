@@ -1,12 +1,12 @@
 import { redirect } from 'next/navigation'
-import { createServerClient } from '@/lib/supabase/server'
+import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
 import { User, ShoppingBag, LogOut, ArrowRight } from 'lucide-react'
 import { formatPrice, formatDate } from '@/lib/utils'
 import type { Order } from '@/lib/types'
 
 export default async function AccountPage() {
-  const supabase = createServerClient()
+  const supabase = createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect('/login')
 

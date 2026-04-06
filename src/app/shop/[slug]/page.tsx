@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { createServerClient } from '@/lib/supabase/server'
+import { createClient } from '@/lib/supabase/server'
 import { notFound } from 'next/navigation'
 import ProductDetailContent from './ProductDetailContent'
 
@@ -8,7 +8,7 @@ interface Props {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const supabase = createServerClient()
+  const supabase = createClient()
   const { data } = await supabase.from('products').select('name, description').eq('slug', params.slug).single()
   if (!data) return { title: 'Product Not Found' }
   return {
@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ProductDetailPage({ params }: Props) {
-  const supabase = createServerClient()
+  const supabase = createClient()
   const { data: product } = await supabase.from('products').select('*').eq('slug', params.slug).eq('is_active', true).single()
   if (!product) notFound()
   return (
@@ -27,3 +27,4 @@ export default async function ProductDetailPage({ params }: Props) {
     </div>
   )
 }
+

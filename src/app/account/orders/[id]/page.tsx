@@ -1,5 +1,5 @@
 import { redirect, notFound } from 'next/navigation'
-import { createServerClient } from '@/lib/supabase/server'
+import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
 import { ArrowLeft, Package, Truck, CheckCircle, Clock } from 'lucide-react'
 import { formatPrice, formatDate } from '@/lib/utils'
@@ -16,7 +16,7 @@ const statusSteps = [
 ]
 
 export default async function OrderDetailPage({ params }: Props) {
-  const supabase = createServerClient()
+  const supabase = createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect('/login')
 
@@ -90,3 +90,4 @@ export default async function OrderDetailPage({ params }: Props) {
     </div>
   )
 }
+
