@@ -1,0 +1,2 @@
+Place product images here.
+Name them to match the product slug, e.g. omega-3-fish-oil.webp

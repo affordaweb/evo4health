@@ -1,0 +1,2 @@
+This directory holds public static assets for the evo4health site.
+Place images in public/images/ and product images in public/images/products/.

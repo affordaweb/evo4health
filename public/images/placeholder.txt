@@ -1,0 +1,2 @@
+Place site images here (hero, about Erin, etc.)
+Supported formats: WebP (preferred), PNG, JPG
