@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Menu, ShoppingCart, User, Leaf } from 'lucide-react'
+import { Menu, ShoppingCart, User, Leaf, Phone } from 'lucide-react'
 import { useCart } from '@/contexts/CartContext'
 import MobileMenu from './MobileMenu'
 import { cn } from '@/lib/utils'
@@ -78,13 +78,10 @@ export default function Navbar() {
             <Link href="/account" className="p-2">
               <User className={cn('h-5 w-5 transition-colors', solid ? 'text-slate-700' : 'text-white')} />
             </Link>
-            <Link href="/schedule" className="hidden md:inline-flex items-center px-5 py-2.5 rounded-full bg-gold-600 text-white text-sm font-semibold hover:bg-gold-700 transition-all duration-200 hover:shadow-lg gap-1.5">
-              <span className="flex gap-0.5 items-center">
-                <span className="w-1.5 h-1.5 rounded-full bg-gold-200 animate-dot-pulse" />
-                <span className="w-1.5 h-1.5 rounded-full bg-gold-200 animate-dot-pulse-delay" />
-              </span>
-              Book Free Call
-            </Link>
+            <a href="tel:+18133335593" className="hidden md:inline-flex items-center px-5 py-2.5 rounded-full bg-gold-600 text-white text-sm font-semibold hover:bg-gold-700 transition-all duration-200 hover:shadow-lg gap-2 animate-ring-pulse">
+              <Phone className="h-4 w-4 text-white animate-phone-ring flex-shrink-0" />
+              Call Us (813) 333-5593
+            </a>
             <button className="md:hidden p-2" onClick={() => setMobileOpen(true)}>
               <Menu className={cn('h-6 w-6 transition-colors', solid ? 'text-slate-700' : 'text-white')} />
             </button>
