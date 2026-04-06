@@ -1,21 +1,4 @@
 import Link from 'next/link'
-import Image from 'next/image'
-import { ArrowRight, Phone, Calendar } from 'lucide-react'
-
-interface PreFooterCTAProps {
-  title?: string
-  titleHighlight?: string
-  subtitle?: string
-  buttonText?: string
-}
-
-export default function PreFooterCTA({
-  title = 'Begin Your',
-  titleHighlight = 'Evolution Today',
-  subtitle = 'Book your free 15-minute discovery call and find out how Functional Medicine can help you achieve lasting health.',
-  buttonText = 'Book Free Discovery Call',
-}: PreFooterCTAProps) {
-import Link from 'next/link'
 import { ArrowRight, Phone, Calendar, MessageSquare, Star, Users, Award } from 'lucide-react'
 
 interface PreFooterCTAProps {
