@@ -53,10 +53,13 @@
   .animate-dot-pulse-delay {
     animation: dot-pulse 1.4s ease-in-out 0.45s infinite;
   }
-  .animate-phone-ring {
-    animation: phone-ring 2s ease-in-out infinite;
-  }
-  .animate-ring-pulse {
-    animation: ring-pulse 2s ease-in-out infinite;
-  }
+}
+
+/* Animation utility classes — outside @layer so they are never purged */
+.animate-phone-ring {
+  animation: phone-ring 2s ease-in-out infinite;
+}
+.animate-ring-pulse {
+  animation: ring-pulse 2s ease-in-out infinite;
+}
 }
