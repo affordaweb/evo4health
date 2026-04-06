@@ -81,7 +81,7 @@ export default function AdminOrdersPage() {
                     <p className="text-slate-500 text-sm">{formatDate(order.created_at)}</p>
                   </div>
                   <div className="flex items-center space-x-4">
-                    <span className="font-bold text-primary-700 text-lg">{formatPrice(order.total)}</span>
+                    <span className="font-bold text-primary-700 text-lg">{formatPrice(order.total_amount)}</span>
                     <span className={'px-3 py-1 rounded-full text-sm font-semibold ' + (statusColors[order.status] || 'bg-slate-100 text-slate-600')}>
                       {order.status}
                     </span>
@@ -128,3 +128,4 @@ export default function AdminOrdersPage() {
     </div>
   )
 }
+

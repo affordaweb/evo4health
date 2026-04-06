@@ -78,7 +78,7 @@ export default async function AccountPage() {
                       </div>
                       <div className="text-right flex items-center space-x-4">
                         <span className={'px-2.5 py-1 rounded-full text-xs font-semibold ' + (statusColors[order.status] || 'bg-slate-100 text-slate-600')}>{order.status}</span>
-                        <span className="font-bold text-primary-700 text-sm">{formatPrice(order.total)}</span>
+                        <span className="font-bold text-primary-700 text-sm">{formatPrice(order.total_amount)}</span>
                         <Link href={'/account/orders/' + order.id} className="text-primary-700 hover:text-primary-900">
                           <ArrowRight className="h-4 w-4" />
                         </Link>

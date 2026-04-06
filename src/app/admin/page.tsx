@@ -19,7 +19,7 @@ export default async function AdminPage() {
     supabase.from('orders').select('total').eq('status', 'delivered'),
   ])
 
-  const totalRevenue = (revenue || []).reduce((sum: number, o: any) => sum + Number(o.total), 0)
+  const totalRevenue = (revenue || []).reduce((sum: number, o: any) => sum + Number(o.total_amount), 0)
 
   const stats = [
     { label: 'Active Products', value: productCount || 0, icon: Package, href: '/admin/products', color: 'bg-primary-50 text-primary-700' },
@@ -85,7 +85,7 @@ export default async function AdminPage() {
                     </div>
                     <div className="flex items-center space-x-3">
                       <span className={'px-2.5 py-1 rounded-full text-xs font-semibold ' + (statusColors[order.status] || 'bg-slate-100 text-slate-600')}>{order.status}</span>
-                      <span className="font-bold text-slate-900 text-sm">{formatPrice(order.total)}</span>
+                      <span className="font-bold text-slate-900 text-sm">{formatPrice(order.total_amount)}</span>
                     </div>
                   </div>
                 ))}

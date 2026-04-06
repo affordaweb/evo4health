@@ -77,7 +77,7 @@ export default async function OrderDetailPage({ params }: Props) {
           <div className="space-y-2 pt-2 border-t">
             <div className="flex justify-between text-sm text-slate-600"><span>Subtotal</span><span>{formatPrice(order.subtotal)}</span></div>
             <div className="flex justify-between text-sm text-slate-600"><span>Shipping</span><span>{order.shipping === 0 ? 'FREE' : formatPrice(order.shipping)}</span></div>
-            <div className="flex justify-between font-bold text-lg"><span>Total</span><span className="text-primary-700">{formatPrice(order.total)}</span></div>
+            <div className="flex justify-between font-bold text-lg"><span>Total</span><span className="text-primary-700">{formatPrice(order.total_amount)}</span></div>
           </div>
         </div>
         {order.shipping_address && (
@@ -90,5 +90,6 @@ export default async function OrderDetailPage({ params }: Props) {
     </div>
   )
 }
+
 
 

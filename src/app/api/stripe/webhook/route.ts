@@ -37,7 +37,7 @@ export async function POST(request: Request) {
         status: 'processing',
         subtotal,
         shipping,
-        total,
+        total_amount: total,
         shipping_address: shippingAddress,
         stripe_payment_intent_id: pi.id,
       }).select().single()
@@ -62,3 +62,4 @@ export async function POST(request: Request) {
 
   return NextResponse.json({ received: true })
 }
+
