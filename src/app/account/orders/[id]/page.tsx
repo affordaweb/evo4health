@@ -16,7 +16,7 @@ const statusSteps = [
 ]
 
 export default async function OrderDetailPage({ params }: Props) {
-  const supabase = createClient()
+  const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect('/login')
 
@@ -90,4 +90,5 @@ export default async function OrderDetailPage({ params }: Props) {
     </div>
   )
 }
+
 

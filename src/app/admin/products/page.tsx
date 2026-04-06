@@ -6,7 +6,7 @@ import { formatPrice } from '@/lib/utils'
 import type { Product } from '@/lib/types'
 
 export default async function AdminProductsPage() {
-  const supabase = createClient()
+  const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect('/login')
   const { data: profile } = await supabase.from('profiles').select('role').eq('id', user.id).single()
@@ -91,3 +91,4 @@ export default async function AdminProductsPage() {
     </div>
   )
 }
+

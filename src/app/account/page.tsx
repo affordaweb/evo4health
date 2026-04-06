@@ -6,7 +6,7 @@ import { formatPrice, formatDate } from '@/lib/utils'
 import type { Order } from '@/lib/types'
 
 export default async function AccountPage() {
-  const supabase = createClient()
+  const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect('/login')
 
@@ -95,3 +95,4 @@ export default async function AccountPage() {
     </div>
   )
 }
+
