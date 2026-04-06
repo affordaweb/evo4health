@@ -16,8 +16,9 @@ const navLinks = [
   { href: '/contact', label: 'Contact' },
 ]
 
-// Pages whose topmost section has a dark background (transparent nav is safe)
-const DARK_HERO_PREFIXES = ['/', '/about', '/services', '/shop', '/schedule', '/contact']
+// Only the home page hero starts at y=0 behind the fixed navbar.
+// All other pages use pt-20, so the area behind the navbar is the white body — transparent nav would hide text.
+const DARK_HERO_PREFIXES = ['/']
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
