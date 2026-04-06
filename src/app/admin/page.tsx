@@ -15,11 +15,11 @@ export default async function AdminPage() {
     supabase.from('products').select('*', { count: 'exact', head: true }).eq('is_active', true),
     supabase.from('orders').select('*', { count: 'exact', head: true }),
     supabase.from('profiles').select('*', { count: 'exact', head: true }),
-    supabase.from('orders').select('id, total, status, created_at, shipping_address').order('created_at', { ascending: false }).limit(5),
-    supabase.from('orders').select('total').eq('status', 'delivered'),
+    supabase.from('orders').select('id, total_amount, status, created_at, shipping_address').order('created_at', { ascending: false }).limit(5),
+    supabase.from('orders').select('total_amount').eq('status', 'delivered'),
   ])
 
-  const totalRevenue = (revenue || []).reduce((sum: number, o: any) => sum + Number(o.total_amount), 0)
+  const totalRevenue = (revenue || []).reduce((sum: number, o: any) => sum + Number(o.total_amount ?? 0), 0)
 
   const stats = [
     { label: 'Active Products', value: productCount || 0, icon: Package, href: '/admin/products', color: 'bg-primary-50 text-primary-700' },

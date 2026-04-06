@@ -34,6 +34,8 @@ CREATE TABLE orders (
   id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
   user_id UUID REFERENCES auth.users(id) ON DELETE SET NULL,
   status TEXT NOT NULL DEFAULT 'pending' CHECK (status IN ('pending','processing','shipped','delivered','cancelled')),
+  subtotal DECIMAL(10,2) NOT NULL DEFAULT 0,
+  shipping DECIMAL(10,2) NOT NULL DEFAULT 0,
   total_amount DECIMAL(10,2) NOT NULL,
   shipping_address JSONB NOT NULL,
   stripe_payment_intent_id TEXT UNIQUE,
@@ -96,10 +98,21 @@ CREATE TRIGGER on_auth_user_created
   AFTER INSERT ON auth.users
   FOR EACH ROW EXECUTE FUNCTION handle_new_user();
 
+-- Decrement product stock atomically (called from the Stripe webhook)
+CREATE OR REPLACE FUNCTION decrement_stock(p_id UUID, qty INTEGER)
+RETURNS VOID AS $$
+BEGIN
+  UPDATE products
+  SET stock_quantity = GREATEST(0, stock_quantity - qty),
+      updated_at     = NOW()
+  WHERE id = p_id;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
 INSERT INTO products (name, slug, description, short_description, price, compare_at_price, images, category, stock_quantity, weight_oz) VALUES
-('Omega-3 Complete', 'omega-3-complete', 'Premium ultra-pure fish oil providing EPA and DHA to support cardiovascular health, brain function, and inflammation reduction.', 'Premium fish oil for heart and brain health', 45.99, 59.99, ARRAY['/images/products/omega3.jpg'], 'supplements', 50, 8),
-('Vitamin D3 + K2', 'vitamin-d3-k2', 'Synergistic combination of Vitamin D3 and K2 (MK-7) to support bone density, immune function, and cardiovascular health.', 'Bone and immune support duo', 34.99, 44.99, ARRAY['/images/products/vitamin-d.jpg'], 'supplements', 45, 4),
-('Probiotic Elite 30B', 'probiotic-elite', 'Advanced 30 billion CFU probiotic formula with 10 clinically-studied strains. Supports gut health and immune function.', '30 billion CFU gut health formula', 52.99, 64.99, ARRAY['/images/products/probiotic.jpg'], 'supplements', 35, 4),
-('Magnesium Glycinate', 'magnesium-glycinate', 'Highly bioavailable magnesium glycinate for optimal absorption. Supports deep sleep, muscle relaxation, and stress reduction.', 'Sleep, muscle, and stress support', 39.99, 49.99, ARRAY['/images/products/magnesium.jpg'], 'supplements', 60, 6),
-('B-Complex Plus', 'b-complex-plus', 'Complete methylated B-vitamin complex for energy production, nerve function, and mood support.', 'Energy and nervous system support', 29.99, 39.99, ARRAY['/images/products/b-complex.jpg'], 'supplements', 40, 3),
-('Adrenal Support Formula', 'adrenal-support', 'Adaptogenic blend featuring ashwagandha, rhodiola, and eleuthero to support healthy cortisol levels and stress resilience.', 'Adaptogen blend for stress resilience', 48.99, 62.99, ARRAY['/images/products/adrenal.jpg'], 'supplements', 30, 5);
+('Omega-3 Complete', 'omega-3-complete', 'Premium ultra-pure fish oil providing EPA and DHA to support cardiovascular health, brain function, and inflammation reduction.', 'Premium fish oil for heart and brain health', 45.99, 59.99, ARRAY[]::TEXT[], 'supplements', 50, 8),
+('Vitamin D3 + K2', 'vitamin-d3-k2', 'Synergistic combination of Vitamin D3 and K2 (MK-7) to support bone density, immune function, and cardiovascular health.', 'Bone and immune support duo', 34.99, 44.99, ARRAY[]::TEXT[], 'supplements', 45, 4),
+('Probiotic Elite 30B', 'probiotic-elite', 'Advanced 30 billion CFU probiotic formula with 10 clinically-studied strains. Supports gut health and immune function.', '30 billion CFU gut health formula', 52.99, 64.99, ARRAY[]::TEXT[], 'supplements', 35, 4),
+('Magnesium Glycinate', 'magnesium-glycinate', 'Highly bioavailable magnesium glycinate for optimal absorption. Supports deep sleep, muscle relaxation, and stress reduction.', 'Sleep, muscle, and stress support', 39.99, 49.99, ARRAY[]::TEXT[], 'supplements', 60, 6),
+('B-Complex Plus', 'b-complex-plus', 'Complete methylated B-vitamin complex for energy production, nerve function, and mood support.', 'Energy and nervous system support', 29.99, 39.99, ARRAY[]::TEXT[], 'supplements', 40, 3),
+('Adrenal Support Formula', 'adrenal-support', 'Adaptogenic blend featuring ashwagandha, rhodiola, and eleuthero to support healthy cortisol levels and stress resilience.', 'Adaptogen blend for stress resilience', 48.99, 62.99, ARRAY[]::TEXT[], 'supplements', 30, 5);

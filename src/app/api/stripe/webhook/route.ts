@@ -47,6 +47,8 @@ export async function POST(request: Request) {
           items.map((item: any) => ({
             order_id: order.id,
             product_id: item.id,
+            product_name: item.name || 'Unknown Product',
+            product_image: item.image || null,
             quantity: item.quantity,
             unit_price: item.price,
           }))
