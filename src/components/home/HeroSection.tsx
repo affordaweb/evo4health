@@ -1,5 +1,6 @@
 'use client'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowDown, Calendar, ChevronRight } from 'lucide-react'
 
 export default function HeroSection() {
@@ -17,7 +18,7 @@ export default function HeroSection() {
         </svg>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-44">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="text-white animate-fade-in-up">
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary-700/50 border border-primary-600 text-primary-200 text-sm font-medium mb-6">
@@ -50,11 +51,18 @@ export default function HeroSection() {
 
           <div className="hidden lg:flex justify-center animate-fade-in">
             <div className="relative">
-              <div className="w-80 h-96 rounded-3xl bg-primary-700/30 border border-primary-600/30 backdrop-blur-sm flex items-center justify-center">
-                <div className="text-center text-white">
-                  <div className="text-6xl mb-4">🌿</div>
-                  <p className="font-heading text-xl font-semibold">Meet Erin</p>
-                  <p className="text-primary-300 text-sm mt-1">Your Health Partner</p>
+              <div className="w-80 h-[440px] rounded-3xl overflow-hidden shadow-2xl border border-primary-600/30">
+                <Image
+                  src="https://evolution4health.com/wp-content/uploads/2026/03/dr-erin-bolton-coletti-md.jpg"
+                  alt="Dr. Erin Bolton-Coletti, MD — Functional Medicine Specialist"
+                  fill
+                  className="object-cover object-top"
+                  sizes="320px"
+                  priority
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-primary-950/80 to-transparent px-5 py-5">
+                  <p className="font-heading text-base font-semibold text-white">Meet Erin</p>
+                  <p className="text-primary-300 text-xs mt-0.5">Your Health Partner</p>
                 </div>
               </div>
               <div className="absolute -bottom-6 -right-6 bg-white rounded-2xl p-4 shadow-2xl">

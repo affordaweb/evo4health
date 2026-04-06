@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import { CheckCircle, Heart, Users, Award } from 'lucide-react'
+import SubpageHero from '@/components/ui/SubpageHero'
+import PreFooterCTA from '@/components/ui/PreFooterCTA'
 
 export const metadata: Metadata = {
   title: 'About Erin | Evolution Functional Medicine',
@@ -25,14 +27,11 @@ const stats = [
 export default function AboutPage() {
   return (
     <div className="pt-20">
-      <section className="py-20 bg-gradient-to-br from-primary-900 to-primary-700 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="font-heading text-5xl md:text-6xl font-bold mb-6">About Erin</h1>
-          <p className="text-primary-200 text-xl max-w-2xl mx-auto">
-            Functional Medicine Practitioner, Hormone Specialist, and passionate advocate for your health.
-          </p>
-        </div>
-      </section>
+      <SubpageHero
+        title="About Erin"
+        subtitle="Functional Medicine Practitioner, Hormone Specialist, and passionate advocate for your health."
+        badge="Meet Our Founder"
+      />
 
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -97,15 +96,12 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-20 bg-primary-700 text-white text-center">
-        <div className="max-w-2xl mx-auto px-4">
-          <h2 className="font-heading text-4xl font-bold mb-4">Ready to Meet Erin?</h2>
-          <p className="text-primary-200 text-lg mb-8">Book your free 15-minute discovery call and take the first step toward lasting health.</p>
-          <Link href="/schedule" className="inline-flex items-center px-10 py-4 rounded-full bg-gold-600 text-white font-bold text-lg hover:bg-gold-700 transition-all duration-200 hover:shadow-2xl hover:scale-105">
-            Book Free Call
-          </Link>
-        </div>
-      </section>
+      <PreFooterCTA
+        title="Ready to Meet"
+        titleHighlight="Erin & the Team?"
+        subtitle="Book your free 15-minute discovery call and take the first step toward lasting, root-cause health with someone who genuinely cares."
+        buttonText="Book Free Discovery Call"
+      />
     </div>
   )
 }

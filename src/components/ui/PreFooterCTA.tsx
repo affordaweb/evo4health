@@ -1,15 +1,27 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Calendar, ArrowRight, Phone } from 'lucide-react'
+import { ArrowRight, Phone } from 'lucide-react'
 
-export default function DiscoveryCallCTA() {
+interface PreFooterCTAProps {
+  title?: string
+  titleHighlight?: string
+  subtitle?: string
+  buttonText?: string
+}
+
+export default function PreFooterCTA({
+  title = 'Begin Your',
+  titleHighlight = 'Evolution Today',
+  subtitle = 'Book your free 15-minute discovery call and find out how Functional Medicine can help you achieve lasting health.',
+  buttonText = 'Book Free Discovery Call',
+}: PreFooterCTAProps) {
   return (
-    <section className="relative py-32 overflow-hidden">
+    <section className="relative py-28 overflow-hidden">
       {/* Background: Erin + Dr Van photo */}
       <div className="absolute inset-0">
         <Image
           src="https://evolution4health.com/wp-content/uploads/2023/09/erin-coletti-and-dr-van.png"
-          alt="Dr. Erin Bolton-Coletti and Dr. Van Benschoten"
+          alt="Evolution Functional Medicine team"
           fill
           className="object-cover object-top"
           sizes="100vw"
@@ -17,32 +29,32 @@ export default function DiscoveryCallCTA() {
         <div className="absolute inset-0 bg-gradient-to-r from-primary-950/92 via-primary-950/80 to-primary-950/50" />
       </div>
 
-      {/* Accent orb */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-gold-400/10 rounded-full -translate-x-48 -translate-y-24 blur-3xl pointer-events-none" />
+      {/* Accent blur orbs */}
+      <div className="absolute top-0 right-0 w-80 h-80 bg-gold-400/10 rounded-full translate-x-40 -translate-y-20 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-primary-400/10 rounded-full -translate-x-40 translate-y-20 blur-3xl pointer-events-none" />
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-xl">
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 border border-white/20 text-sm font-medium text-white mb-6">
-            <Calendar className="h-4 w-4 mr-2 text-gold-400" />
-            Free 15-Minute Discovery Call
+        <div className="max-w-2xl">
+          {/* Credential badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-primary-200 text-sm font-medium mb-8">
+            <span className="w-1.5 h-1.5 bg-gold-400 rounded-full animate-pulse" />
+            Evolution Functional Medicine
           </div>
 
           <h2 className="font-heading text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
-            Ready to Start Your<br />
-            <span className="text-gold-400">Health Journey?</span>
+            {title}<br />
+            <span className="text-gold-400">{titleHighlight}</span>
           </h2>
 
-          <p className="text-primary-200 text-lg leading-relaxed mb-10">
-            Book your free 15-minute discovery call with Erin and take the first step toward the health and life you deserve. No pressure, just a friendly conversation.
-          </p>
+          <p className="text-primary-200 text-lg leading-relaxed mb-10">{subtitle}</p>
 
           <div className="flex flex-col sm:flex-row gap-4">
             <Link
               href="/schedule"
               className="inline-flex items-center justify-center px-10 py-5 rounded-full bg-gold-600 text-white font-bold text-lg hover:bg-gold-700 transition-all duration-200 hover:shadow-2xl hover:scale-105 group"
             >
-              Book Your Free Call
+              {buttonText}
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Link>
             <a

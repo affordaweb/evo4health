@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import SubpageHero from '@/components/ui/SubpageHero'
 
 export const metadata: Metadata = {
   title: 'Book Your Free Discovery Call | Evolution Functional Medicine',
@@ -8,17 +9,11 @@ export const metadata: Metadata = {
 export default function SchedulePage() {
   return (
     <div className="pt-20">
-      <section className="py-20 bg-gradient-to-br from-primary-900 to-primary-700 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="inline-block px-4 py-2 rounded-full bg-white/10 text-primary-200 text-sm font-medium mb-6">
-            ✦ Free Consultation
-          </span>
-          <h1 className="font-heading text-5xl md:text-6xl font-bold mb-6">Book Your Free Discovery Call</h1>
-          <p className="text-primary-200 text-xl">
-            Schedule a free 15-minute call with Erin to discuss your health goals and find out if we are the right fit for you.
-          </p>
-        </div>
-      </section>
+      <SubpageHero
+        title="Book Your Free Discovery Call"
+        subtitle="Schedule a free 15-minute call with Erin to discuss your health goals and find out if we are the right fit for you."
+        badge="Free Consultation"
+      />
 
       <section className="py-16 bg-[#f8fafc]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
