@@ -8,6 +8,11 @@
   h1, h2, h3, h4, h5, h6 { @apply font-heading; }
 }
 
+@keyframes dot-pulse {
+  0%, 100% { transform: scale(0.65); opacity: 0.45; }
+  50% { transform: scale(1.1); opacity: 1; }
+}
+
 @layer components {
   .btn-primary {
     @apply inline-flex items-center justify-center px-6 py-3 rounded-full bg-primary-700 text-white font-semibold text-sm transition-all duration-200 hover:bg-primary-800 hover:shadow-lg hover:scale-105 active:scale-95;
@@ -26,5 +31,11 @@
   }
   .container-max {
     @apply max-w-7xl mx-auto;
+  }
+  .animate-dot-pulse {
+    animation: dot-pulse 1.4s ease-in-out infinite;
+  }
+  .animate-dot-pulse-delay {
+    animation: dot-pulse 1.4s ease-in-out 0.45s infinite;
   }
 }

@@ -39,6 +39,10 @@ export default function HeroSection() {
                 <ChevronRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link href="/services" className="inline-flex items-center justify-center px-8 py-4 rounded-full border-2 border-white text-white font-semibold text-base hover:bg-white hover:text-primary-900 transition-all duration-200">
+                <span className="flex gap-0.5 items-center mr-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white/70 animate-dot-pulse" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-white/70 animate-dot-pulse-delay" />
+                </span>
                 Explore Our Services
               </Link>
             </div>

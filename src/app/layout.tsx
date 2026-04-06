@@ -6,7 +6,6 @@ import { GoogleAnalytics } from '@next/third-parties/google'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import Providers from '@/components/Providers'
-import DevBanner from '@/components/DevBanner'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
@@ -48,8 +47,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={inter.variable + ' ' + playfair.variable}>
       <body className="font-sans bg-white text-slate-900 antialiased">
-        {/* DEV ENVIRONMENT NOTICE — remove DevBanner before going live */}
-        <DevBanner />
         <Providers>
           <Navbar />
           <main>{children}</main>

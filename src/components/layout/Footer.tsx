@@ -89,7 +89,7 @@ export default function Footer() {
       <div className="border-t border-primary-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0">
           <p className="text-slate-500 text-xs">© {new Date().getFullYear()} Evolution Functional Medicine. All rights reserved.</p>
-          <p className="text-slate-500 text-xs">Built by <a href="https://affordaweb.com" className="text-primary-400 hover:text-primary-300 transition-colors">AffordaWeb</a></p>
+          <p className="text-slate-500 text-xs">Web Design by: <a href="https://affordawebsolutions.com/" target="_blank" rel="noopener noreferrer" className="text-primary-400 hover:text-primary-300 transition-colors">AffordaWeb Solutions</a></p>
         </div>
       </div>
     </footer>

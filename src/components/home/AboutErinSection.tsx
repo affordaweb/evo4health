@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import { CheckCircle, Quote } from 'lucide-react'
+import { CheckCircle, Quote, Award, Users, Heart } from 'lucide-react'
 
 const highlights = [
   'Personalized functional medicine protocols',
@@ -9,13 +9,21 @@ const highlights = [
   'Comprehensive hormone and metabolic testing',
 ]
 
+const stats = [
+  { icon: Award, value: '10+', label: 'Years Exp.', color: 'text-gold-600', bg: 'bg-gold-50' },
+  { icon: Users, value: '500+', label: 'Patients', color: 'text-primary-700', bg: 'bg-primary-50' },
+  { icon: Heart, value: '5.0', label: 'Rating', color: 'text-rose-500', bg: 'bg-rose-50' },
+]
+
 export default function AboutErinSection() {
   return (
     <section className="py-24 bg-[#f8fafc]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="order-2 lg:order-1">
-            <span className="text-primary-600 font-semibold text-sm uppercase tracking-wider">About Erin</span>
+            <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-primary-50 border border-primary-100 text-primary-700 text-sm font-semibold tracking-wide mb-4">
+              About Erin
+            </span>
             <h2 className="font-heading text-4xl md:text-5xl font-bold text-slate-900 mt-2 mb-6">
               Meet Erin, Your Partner in Health
             </h2>
@@ -35,7 +43,7 @@ export default function AboutErinSection() {
               ))}
             </ul>
 
-            <blockquote className="border-l-4 border-gold-500 pl-6 my-8 bg-gold-50 rounded-r-xl py-4 pr-4">
+            <blockquote className="border-l-4 border-gold-500 pl-6 my-8 bg-white rounded-r-xl py-4 pr-4 shadow-sm">
               <Quote className="h-6 w-6 text-gold-500 mb-2" />
               <p className="text-slate-700 italic leading-relaxed">
                 &ldquo;Erin is not only an expert in her field but also takes the time to explain things thoroughly... Every appointment feels like a conversation with a friend who genuinely cares.&rdquo;
@@ -43,24 +51,50 @@ export default function AboutErinSection() {
               <footer className="mt-2 text-sm font-semibold text-primary-700">— Stacy A. Adams</footer>
             </blockquote>
 
-            <Link href="/about" className="btn-primary">
+            <Link href="/about" className="btn-primary inline-flex items-center gap-2">
+              <span className="flex gap-0.5 items-center">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary-300 animate-dot-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-primary-300 animate-dot-pulse-delay" />
+              </span>
               Learn More About Erin
             </Link>
           </div>
 
           <div className="order-1 lg:order-2 flex justify-center">
             <div className="relative w-full max-w-md">
-              <div className="aspect-[4/5] rounded-3xl bg-gradient-to-br from-primary-100 to-primary-200 flex items-center justify-center shadow-2xl overflow-hidden">
-                <div className="text-center text-primary-700">
-                  <div className="text-8xl mb-4">👩‍⚕️</div>
-                  <p className="font-heading text-2xl font-bold">Erin</p>
-                  <p className="text-primary-600 mt-1">Functional Medicine Practitioner</p>
+              {/* Main card */}
+              <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700">
+                <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full translate-x-16 -translate-y-16" />
+                <div className="absolute bottom-0 left-0 w-64 h-64 bg-gold-500/10 rounded-full -translate-x-24 translate-y-24" />
+                <div className="relative h-full flex flex-col items-center justify-center text-center px-8">
+                  <div className="w-28 h-28 rounded-full bg-white/10 border-2 border-white/20 flex items-center justify-center mb-5 text-6xl backdrop-blur-sm">
+                    👩‍⚕️
+                  </div>
+                  <p className="font-heading text-2xl font-bold text-white mb-1">Erin</p>
+                  <p className="text-primary-200 text-sm mb-5">Functional Medicine Practitioner</p>
+                  <div className="w-16 h-0.5 bg-gold-400 mx-auto mb-5" />
+                  <p className="text-primary-200 text-xs leading-relaxed max-w-xs">
+                    Dedicated to uncovering root causes and empowering patients to achieve lasting, vibrant health.
+                  </p>
                 </div>
               </div>
-              <div className="absolute -top-4 -left-4 w-24 h-24 bg-gold-100 rounded-full flex items-center justify-center shadow-lg">
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-gold-700">10+</div>
-                  <div className="text-xs text-gold-600">Years Exp.</div>
+              {/* Floating stats bar */}
+              <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)]">
+                <div className="bg-white rounded-2xl shadow-xl px-4 py-3 flex items-center justify-between gap-2">
+                  {stats.map((s, i) => {
+                    const Icon = s.icon
+                    return (
+                      <div key={i} className="flex items-center gap-2 flex-1 justify-center">
+                        <div className={`w-8 h-8 rounded-lg ${s.bg} flex items-center justify-center flex-shrink-0`}>
+                          <Icon className={`h-4 w-4 ${s.color}`} />
+                        </div>
+                        <div>
+                          <div className="font-bold text-slate-900 text-sm leading-none">{s.value}</div>
+                          <div className="text-slate-500 text-xs">{s.label}</div>
+                        </div>
+                      </div>
+                    )
+                  })}
                 </div>
               </div>
             </div>
