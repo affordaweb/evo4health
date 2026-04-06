@@ -52,7 +52,7 @@ export async function POST(request: Request) {
           }))
         )
         for (const item of items) {
-          await supabase.rpc('decrement_stock', { p_id: item.id, qty: item.quantity }).catch(() => {})
+          try { await supabase.rpc('decrement_stock', { p_id: item.id, qty: item.quantity }) } catch {}
         }
       }
     } catch (err) {
