@@ -17,10 +17,10 @@ export default function PreFooterCTA({
 }: PreFooterCTAProps) {
   return (
     <section className="overflow-hidden">
-      <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[520px]">
+      <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[520px] items-stretch">
 
         {/* Left: photo */}
-        <div className="relative h-72 lg:h-auto order-2 lg:order-1">
+        <div className="relative min-h-[360px] lg:min-h-full order-2 lg:order-1">
           <Image
             src="https://evolution4health.com/wp-content/uploads/2023/09/erin-coletti-and-dr-van.png"
             alt="Dr. Erin Bolton-Coletti and Dr. Van Benschoten"
