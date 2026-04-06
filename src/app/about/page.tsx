@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import { CheckCircle, Heart, Users, Award } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -37,11 +38,18 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="flex justify-center">
-              <div className="w-full max-w-sm aspect-[4/5] rounded-3xl bg-gradient-to-br from-primary-100 to-primary-200 flex items-center justify-center shadow-2xl">
-                <div className="text-center text-primary-700">
-                  <div className="text-8xl mb-4">👩‍⚕️</div>
-                  <p className="font-heading text-2xl font-bold">Erin</p>
-                  <p className="text-primary-600 text-sm mt-1">Functional Medicine Practitioner</p>
+              <div className="relative w-full max-w-sm aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
+                <Image
+                  src="https://evolution4health.com/wp-content/uploads/2026/03/dr-erin-bolton-coletti-md.jpg"
+                  alt="Dr. Erin Bolton-Coletti, MD — Functional Medicine Practitioner"
+                  fill
+                  className="object-cover object-top"
+                  sizes="(max-width: 768px) 100vw, 40vw"
+                  priority
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-primary-950/80 to-transparent px-5 py-4">
+                  <p className="font-heading text-lg font-bold text-white">Dr. Erin Bolton-Coletti, MD</p>
+                  <p className="text-primary-200 text-xs">Functional Medicine Practitioner</p>
                 </div>
               </div>
             </div>

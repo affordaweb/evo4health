@@ -1,5 +1,6 @@
 'use client'
 import Link from 'next/link'
+import Image from 'next/image'
 import { CheckCircle, Quote, Award, Users, Heart } from 'lucide-react'
 
 const highlights = [
@@ -63,19 +64,19 @@ export default function AboutErinSection() {
           <div className="order-1 lg:order-2 flex justify-center">
             <div className="relative w-full max-w-md">
               {/* Main card */}
-              <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700">
-                <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full translate-x-16 -translate-y-16" />
-                <div className="absolute bottom-0 left-0 w-64 h-64 bg-gold-500/10 rounded-full -translate-x-24 translate-y-24" />
-                <div className="relative h-full flex flex-col items-center justify-center text-center px-8">
-                  <div className="w-28 h-28 rounded-full bg-white/10 border-2 border-white/20 flex items-center justify-center mb-5 text-6xl backdrop-blur-sm">
-                    👩‍⚕️
-                  </div>
-                  <p className="font-heading text-2xl font-bold text-white mb-1">Erin</p>
-                  <p className="text-primary-200 text-sm mb-5">Functional Medicine Practitioner</p>
-                  <div className="w-16 h-0.5 bg-gold-400 mx-auto mb-5" />
-                  <p className="text-primary-200 text-xs leading-relaxed max-w-xs">
-                    Dedicated to uncovering root causes and empowering patients to achieve lasting, vibrant health.
-                  </p>
+              <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
+                <Image
+                  src="https://evolution4health.com/wp-content/uploads/2026/03/dr-erin-bolton-coletti-md.jpg"
+                  alt="Dr. Erin Bolton-Coletti, MD — Functional Medicine Practitioner"
+                  fill
+                  className="object-cover object-top"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  priority
+                />
+                {/* Overlay badge at bottom */}
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-primary-950/90 via-primary-900/50 to-transparent px-6 py-5">
+                  <p className="font-heading text-xl font-bold text-white mb-0.5">Dr. Erin Bolton-Coletti, MD</p>
+                  <p className="text-primary-200 text-xs">Functional Medicine Practitioner</p>
                 </div>
               </div>
               {/* Floating stats bar */}
